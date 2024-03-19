@@ -719,6 +719,17 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <!-- This profils downloads, configures, starts, and stops a WildFly instance
+            for the purpose of running this test suite. -->
+            <id>run-wildfly</id>
+            <activation>
+                <property>
+                    <name>runWildFly</name>
+                </property>
+            </activation>
+        </profile>
     </profiles>
 
     <repositories>

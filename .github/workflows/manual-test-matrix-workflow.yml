@@ -1,0 +1,54 @@
+name: "Manual matrix test execution"
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  test_matrix:
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          [
+            "tests-configuration-elytron",
+            "tests-configuration-management",
+            "tests-configuration-undertow",
+            "tests-hal-deployment",
+            "tests-hal-configuration",
+            "tests-hal-runtime",
+            "tests-hal-vulnerabilities",
+            "tests-hal-basic"
+          ]
+    name: "Run tests"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout testsuite.next"
+        uses: actions/checkout@v4
+      - name: "Setup JDK"
+        uses: actions/setup-java@v4
+        with:
+          distribution: "adopt"
+          java-version: "17"
+      - name: Install Firefox
+        uses: browser-actions/setup-firefox@v1
+        with:
+          firefox-version: "latest-esr"
+      - name: Download Geckodriver
+        run: |
+          wget https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz
+          tar -xzf geckodriver-v0.34.0-linux64.tar.gz
+      - name: Test
+        id: test
+        run: |
+            $MVN mvn test -Pbasic,firefox,standalone,restoreConfig \
+                --projects ${{ matrix.module }} \
+                --also-make \
+                -Dwebdriver.gecko.driver=$(pwd)/geckodriver \
+                -Dmaven.buildNumber.skip=true \
+                --fail-at-end \
+                --batch-mode
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: surefire-reports-${{ matrix.module }}
+          path: '${{ matrix.module }}/target/surefire-reports/*.txt'
