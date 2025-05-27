@@ -104,7 +104,13 @@ public class Console {
             URL url = new URL(baseUrl, hashFragment);
             browser.navigate().to(url);
             browser.navigate().refresh();
-            waitModel().until().element(selector).is().present();
+            try {
+                waitModel().until().element(selector).is().present();
+            } catch (org.openqa.selenium.TimeoutException e) {
+                // try again in case of intermittent issues
+                browser.navigate().refresh();
+                waitModel().until().element(selector).is().present();
+            }
             browser.manage().window().maximize();
         } catch (MalformedURLException e) {
             throw new LocationException("Malformed URL: ", e.getCause());
