@@ -83,6 +83,7 @@ public class AbstractFactoriesTransformersTest {
         ModelNode MECH_CONF_DELETE_MODEL = new ModelNode();
 
         FILTER_CREATE_MODEL.get(PATTERN_FILTER).set(FILTERS_CREATE);
+        FILTER_CREATE_MODEL.get(ENABLING).set(true);
         FILTER_UPDATE_MODEL.get(PATTERN_FILTER).set(FILTERS_UPDATE);
         FILTER_UPDATE_MODEL.get(ENABLING).set(true);
         FILTER_UPDATE2_MODEL.get(PATTERN_FILTER).set(FILTERS_UPDATE2);
