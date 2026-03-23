@@ -84,9 +84,9 @@ public class SingleSignOnAddTest {
         crudOperations.createSingleton(
             ApplicationSecurityDomainFixtures.singleSignOnAddress(APPLICATION_SECURITY_DOMAIN_TO_BE_TESTED2),
             page.getSingleSignOnForm(), formFragment -> {
-                formFragment.text(ApplicationSecurityDomainFixtures.SINGLE_SIGN_ON_KEY_ALIAS, keyAlias);
-                formFragment.text(ApplicationSecurityDomainFixtures.SINGLE_SIGN_ON_KEY_STORE, KEY_STORE_TO_BE_ADDED);
-                formFragment.text(ElytronFixtures.CREDENTIAL_REFERENCE + ElytronFixtures.CREDENTIAL_REFERENCE_CLEAR_TEXT, clearTextValue);
+                formFragment.editTextFiringExtraChangeEvent(ApplicationSecurityDomainFixtures.SINGLE_SIGN_ON_KEY_ALIAS, keyAlias);
+                formFragment.editTextFiringExtraChangeEvent(ApplicationSecurityDomainFixtures.SINGLE_SIGN_ON_KEY_STORE, KEY_STORE_TO_BE_ADDED);
+                formFragment.editTextFiringExtraChangeEvent(ElytronFixtures.CREDENTIAL_REFERENCE + ElytronFixtures.CREDENTIAL_REFERENCE_CLEAR_TEXT, clearTextValue);
             }, resourceVerifier -> {
                 resourceVerifier.verifyAttribute(ApplicationSecurityDomainFixtures.SINGLE_SIGN_ON_KEY_ALIAS, keyAlias);
                 resourceVerifier.verifyAttribute(ApplicationSecurityDomainFixtures.SINGLE_SIGN_ON_KEY_STORE,
