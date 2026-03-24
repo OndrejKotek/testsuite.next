@@ -36,8 +36,10 @@ public class VerticalNavigationFragment {
     }
 
     public void selectSecondary(String primaryId, String secondaryId) {
-        WebElement primaryMenuItem = root.findElement(By.cssSelector("#" + primaryId + " > a"));
-        new Actions(browser).moveToElement(primaryMenuItem).perform();
+        By primarySelector = By.cssSelector("#" + primaryId + " > a");
+        waitGui().until().element(primarySelector).is().visible();
+        WebElement primaryMenuItem = root.findElement(primarySelector);
+        new Actions(browser).click(primaryMenuItem).perform();
         waitGui().until().element(By.id(primaryId + "-secondary")).is().visible();
         selectItem(secondaryId);
     }

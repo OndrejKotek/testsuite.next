@@ -225,8 +225,10 @@ public class Console {
     }
 
     public VerticalNavigationFragment verticalNavigation() {
+        By selector = By.cssSelector(DOT + navPfVerticalHal);
+        waitModel().until().element(selector).is().present();
         return createPageFragment(VerticalNavigationFragment.class,
-                browser.findElement(By.cssSelector(DOT + navPfVerticalHal)));
+                browser.findElement(selector));
     }
 
     public WizardFragment wizard() {

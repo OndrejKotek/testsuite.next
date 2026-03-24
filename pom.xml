@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>39</version>
+        <version>51</version>
     </parent>
 
     <groupId>org.jboss.hal</groupId>
@@ -58,8 +58,8 @@
         <browser>phantomjs</browser>
         <linkXRef>false</linkXRef>
         <testsuite.config.location>${user.dir}/testsuite.properties</testsuite.config.location>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <suite.domain.default.host>primary</suite.domain.default.host>
@@ -76,27 +76,27 @@
         <test.included.category/>
 
         <!-- dependency versions -->
-        <arquillian.version>1.7.1.Final</arquillian.version>
-        <arquillian.drone.version>2.5.0</arquillian.drone.version>
-        <arquillian.wildfly.version>5.0.1.Final</arquillian.wildfly.version>
+        <arquillian.version>1.10.0.Final</arquillian.version>
+        <arquillian.drone.version>3.0.0.Final</arquillian.drone.version>
+        <arquillian.wildfly.version>5.1.0.Final</arquillian.wildfly.version>
         <shrinkwrap.resolver.version>3.2.1</shrinkwrap.resolver.version>
-        <commons.io.version>2.14.0</commons.io.version>
-        <commons.lang.version>3.13.0</commons.lang.version>
-        <commons.text.version>1.10.0</commons.text.version>
-        <creaper.version>2.0.2</creaper.version>
-        <graphene.version>2.3.2</graphene.version>
-        <guava.version>31.1-jre</guava.version>
+        <commons.io.version>2.21.0</commons.io.version>
+        <commons.lang.version>3.20.0</commons.lang.version>
+        <commons.text.version>1.15.0</commons.text.version>
+        <creaper.version>2.0.3</creaper.version>
+        <graphene.version>3.0.0.Final</graphene.version>
+        <guava.version>33.5.0-jre</guava.version>
         <gwtp.version>1.6</gwtp.version>
-        <hal.version>3.6.17.Final</hal.version>
+        <hal.version>3.7.19.Final</hal.version>
         <jboss.dmr.version>1.7.0.Final</jboss.dmr.version>
         <jgrapht.version>1.0.1</jgrapht.version>
-        <junit.version>4.13.1</junit.version>
-        <selenium.version>3.8.1</selenium.version>
+        <junit.version>4.13.2</junit.version>
+        <selenium.version>4.41.0</selenium.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <wildfly.version>30.0.0.Final</wildfly.version>
-        <wildfly.cli.version>22.0.0.Final</wildfly.cli.version>
-        <surefire.version>2.21.0</surefire.version>
-        <jackson.bom.version>2.9.5</jackson.bom.version>
+        <wildfly.version>39.0.0.Final</wildfly.version>
+        <wildfly.cli.version>31.0.3.Final</wildfly.cli.version>
+        <surefire.version>3.5.4</surefire.version>
+        <jackson.bom.version>2.21.0</jackson.bom.version>
         <javax.xml.bind.version>2.3.1</javax.xml.bind.version>
     </properties>
 
@@ -158,11 +158,9 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.jboss.arquillian.selenium</groupId>
-                <artifactId>selenium-bom</artifactId>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-api</artifactId>
                 <version>${selenium.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.extension</groupId>
