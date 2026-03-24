@@ -15,9 +15,9 @@ jobs:
         id: setup-jdk
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: maven
       - name: Build
         id: build
-        run: $MVN -Pall clean install --file pom.xml -DskipTests
+        run: $MVN --batch-mode -Pall clean install --file pom.xml -DskipTests -DallowIncompleteProjects=true
